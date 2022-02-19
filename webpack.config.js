@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   output: {
     path:path.resolve(__dirname, "dist"),
     filename: "main.js",
@@ -10,16 +10,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
-      }
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   devtool: "source-map",
   target: "web",
